@@ -1,0 +1,133 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#header-container {
+    position: fixed;
+    z-index: 99;
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(90deg, #ED3CCAFF, #7C19F8FF);
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+#header {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+/* #header>div{
+
+} */
+#header a{
+    color: white;
+    text-decoration: none;
+}
+#userButtons {
+        display: flex;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+#logo{
+    width: 216px;
+    height: 58px;
+    background-image: url("../data/assets/Wildberries_2023_Pink.svg.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:contain;
+    
+    filter: brightness(10);
+    
+}
+
+#sideMenu{
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    height: 35px;
+    align-content: center;
+    cursor: pointer;
+}
+#searchBar{
+    display: flex;
+    flex-grow: 1;
+    height: 35px;
+}
+#searchBar>input{
+    width: 100%;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+#userButtons>div{
+    position: relative;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#userButtons>div>i{
+   font-size: 1.5em;
+
+}
+#wished{
+   font-size: 1.5em;
+   color:white;
+       font-size: 1.2rem;
+    position: relative;
+    top: 0px;
+    right: 0px;
+
+}
+
+.fa-gift{
+   font-size: 3rem;
+}
+#userButtons>div>a {
+    color:rgb(204, 202, 202);
+
+}
+#userButtons>div>a:hover {
+    color:white;
+    
+}
+#counter-cart{
+    position: absolute;
+    right: 8px;
+    top: -8px;
+    align-self: center;
+    background: red;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 50%;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+}
+
+#counter-wishes{
+    position: absolute;
+    right: 8px;
+    top: -8px;
+    align-self: center;
+    background: red;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 50%;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+}

@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#sideBarOverlay {
+    position: fixed;
+    inset: 100px 0 0;
+    z-index: 98;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 250ms ease;
+}
+
+#sideBarOverlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#sideBarBlock {
+    display: flex;
+    flex-direction: column;
+    width: 312px;
+    height: 100vh;
+    background-color:  white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    transition: transform 250ms ease;
+    /* align-items: center ; */
+}
+
+#sideBarOverlay.is-open #sideBarBlock {
+    transform: translateX(0);
+}
+
+#sidebarList{
+    padding: 10px;
+}
+
+.sideMenuItems {
+    line-height: 40px;
+    display: flex;
+    font-size: 20px;
+    width: 100%;
+    background-color: white;
+    border-radius: 8px;
+    padding: 0 20px;
+}
+.sideMenuItems:hover{
+    filter: brightness(.95);
+    /* filter: saturate(0); */
+}
