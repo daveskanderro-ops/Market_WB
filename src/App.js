@@ -5,6 +5,8 @@ import Cart from './Components/Cart';
 import WishList from './Components/WishList';
 import { useState } from 'react';
 import SideBar from './Components/SideBar';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './Components/Layout';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -17,7 +19,6 @@ function App() {
   const addToCart = (item) => {
     setCartItems((currentItems) => {
       const existingItem = currentItems.find((cartItem) => cartItem.id === item.id);
-
       if (existingItem) {
         return currentItems.map((cartItem) => (
           cartItem.id === item.id
@@ -25,7 +26,6 @@ function App() {
             : cartItem
         ));
       }
-
       return [...currentItems, { ...item, quantity: 1 }];
     });
   };
@@ -40,41 +40,59 @@ function App() {
       .filter((cartItem) => cartItem.quantity > 0));
   };
 
-    const toggleWishList = (item) => {
+  const toggleWishList = (item) => {
     setWishItems((currentItems) => {
       const existingItem = currentItems.find((wishItem) => wishItem.id === item.id);
 
       if (existingItem) {
         return currentItems.filter((wishItem) => wishItem.id !== item.id);
       }
-
       return [...currentItems, { ...item, quantity: 1 }];
     });
   };
-  
+
   return (
-    <div className="App">
-      
-      <SideBar
-        isOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-      />
-      <Header
-        cartItemCount={cartItemCount}
-        wishItemCount={wishItemCount}
-        isMenuOpen={isSidebarOpen}
-        onMenuClick={() => setIsSidebarOpen((isOpen) => !isOpen)}
-      />
-      <Product_items
-        addToCart={addToCart}
-        cartItems={cartItems}
-        decreaseCartQuantity={decreaseCartQuantity}
-        wishItems={wishItems}
-        toggleWishList={toggleWishList}
-      />
-      {/* <Cart items={cartItems}/> */}
-      <WishList items={wishItems}/>
-    </div>
+    <Routes>
+      <Route element={<Layout />}>
+
+        <Route path="/"
+          element={<Header
+            cartItemCount={cartItemCount}
+            wishItemCount={wishItemCount}
+            isMenuOpen={isSidebarOpen}
+            onMenuClick={() => setIsSidebarOpen((isOpen) => !isOpen)} />} />
+        
+      </Route>
+      <Route path="/"
+        element={<Product_items
+          addToCart={addToCart}
+          cartItems={cartItems}
+          decreaseCartQuantity={decreaseCartQuantity}
+          wishItems={wishItems}
+          toggleWishList={toggleWishList} />} />
+    </Routes>
+    // <div className="App">
+
+    //   <SideBar
+    //     isOpen={isSidebarOpen}
+    //     onClose={() => setIsSidebarOpen(false)}
+    //   />
+    // <Header
+    //   cartItemCount={cartItemCount}
+    //   wishItemCount={wishItemCount}
+    //   isMenuOpen={isSidebarOpen}
+    //   onMenuClick={() => setIsSidebarOpen((isOpen) => !isOpen)}
+    // />
+    // <Product_items
+    //   addToCart={addToCart}
+    //   cartItems={cartItems}
+    //   decreaseCartQuantity={decreaseCartQuantity}
+    //   wishItems={wishItems}
+    //   toggleWishList={toggleWishList}
+    // />
+    //   {/* <Cart items={cartItems}/> */}
+    //   <WishList items={wishItems}/>
+    // </div>
   );
 }
 
