@@ -34,16 +34,6 @@ import image19 from "./images/item_19/1.webp"
 import image20 from "./images/item_20/1.webp"
 
 
-function getImages(id) {
-    const images = [];
-    for (let i = 1; i <= 20; i++) {
-        images.push(`./images/item_0${id}/1.webp`);
-    }   
-    console.log(images);
-    return images;
-}
-
-
 export default function getItemsData() {
     const items = [
         {

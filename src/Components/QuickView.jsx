@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-const imageContext = require.context("../data/images", true, /\.webp$/);
-
 export default function QuickView({ item, onClose, addToCart }) {
     const [activeImageIndex, setActiveImageIndex] = useState(0);
 
@@ -11,12 +9,7 @@ export default function QuickView({ item, onClose, addToCart }) {
 
     if (!item) return null;
 
-    const gallery = imageContext
-        .keys()
-        .filter((key) => key.includes(`item_${String(item.id).padStart(2, "0")}`))
-        .map((key) => imageContext(key));
-
-    const displayedImages = gallery.length > 0 ? gallery : [item.image];
+    const displayedImages = [item.image];
     const currentImage = displayedImages[activeImageIndex] || item.image;
     const goToPreviousImage = () => {
         setActiveImageIndex((index) =>

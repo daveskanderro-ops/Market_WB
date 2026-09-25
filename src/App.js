@@ -1,29 +1,42 @@
 import './App.css';
 import Header from './Components/Header';
-import Product_items from './Components/Product_items';
+import Footer from './Components/Footer';
 import Cart from './Components/Cart';
 import WishList from './Components/WishList';
-import { useState } from 'react';
+import Home from './Components/Home';
 import SideBar from './Components/SideBar';
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Layout from './Components/Layout';
+
+function AppShell({ children, cartItemCount, wishItemCount, isSidebarOpen, onSidebarToggle }) {
+  return (
+    <>
+      <Header
+        cartItemCount={cartItemCount}
+        wishItemCount={wishItemCount}
+        isMenuOpen={isSidebarOpen}
+        onMenuClick={onSidebarToggle}
+      />
+      <SideBar isOpen={isSidebarOpen} onClose={() => onSidebarToggle(false)} />
+      <main>{children}</main>
+      <Footer />
+    </>
+  );
+}
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   const [wishItems, setWishItems] = useState([]);
   const wishItemCount = wishItems.reduce((total, item) => total + item.quantity, 0);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const addToCart = (item) => {
     setCartItems((currentItems) => {
       const existingItem = currentItems.find((cartItem) => cartItem.id === item.id);
       if (existingItem) {
         return currentItems.map((cartItem) => (
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
+          cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
         ));
       }
       return [...currentItems, { ...item, quantity: 1 }];
@@ -33,9 +46,7 @@ function App() {
   const decreaseCartQuantity = (item) => {
     setCartItems((currentItems) => currentItems
       .map((cartItem) => (
-        cartItem.id === item.id
-          ? { ...cartItem, quantity: cartItem.quantity - 1 }
-          : cartItem
+        cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem
       ))
       .filter((cartItem) => cartItem.quantity > 0));
   };
@@ -51,48 +62,62 @@ function App() {
     });
   };
 
+  const appShellProps = {
+    cartItemCount,
+    wishItemCount,
+    isSidebarOpen,
+    onSidebarToggle: (nextState) => {
+      setIsSidebarOpen((isOpen) => (typeof nextState === 'boolean' ? nextState : !isOpen));
+    },
+  };
+
   return (
     <Routes>
-      <Route element={<Layout />}>
-
-        <Route path="/"
-          element={<Header
-            cartItemCount={cartItemCount}
-            wishItemCount={wishItemCount}
-            isMenuOpen={isSidebarOpen}
-            onMenuClick={() => setIsSidebarOpen((isOpen) => !isOpen)} />} />
-        
-      </Route>
-      <Route path="/"
-        element={<Product_items
-          addToCart={addToCart}
-          cartItems={cartItems}
-          decreaseCartQuantity={decreaseCartQuantity}
-          wishItems={wishItems}
-          toggleWishList={toggleWishList} />} />
+      <Route
+        path="/"
+        element={(
+          <AppShell {...appShellProps}>
+            <Home
+              addToCart={addToCart}
+              cartItems={cartItems}
+              decreaseCartQuantity={decreaseCartQuantity}
+              wishItems={wishItems}
+              toggleWishList={toggleWishList}
+            />
+          </AppShell>
+        )}
+      />
+      <Route
+        path="/wishlist"
+        element={(
+          <AppShell {...appShellProps}>
+            <WishList items={wishItems} />
+          </AppShell>
+        )}
+      />
+      <Route
+        path="/cart"
+        element={(
+          <AppShell {...appShellProps}>
+            <Cart items={cartItems} />
+          </AppShell>
+        )}
+      />
+      <Route
+        path="*"
+        element={(
+          <AppShell {...appShellProps}>
+            <Home
+              addToCart={addToCart}
+              cartItems={cartItems}
+              decreaseCartQuantity={decreaseCartQuantity}
+              wishItems={wishItems}
+              toggleWishList={toggleWishList}
+            />
+          </AppShell>
+        )}
+      />
     </Routes>
-    // <div className="App">
-
-    //   <SideBar
-    //     isOpen={isSidebarOpen}
-    //     onClose={() => setIsSidebarOpen(false)}
-    //   />
-    // <Header
-    //   cartItemCount={cartItemCount}
-    //   wishItemCount={wishItemCount}
-    //   isMenuOpen={isSidebarOpen}
-    //   onMenuClick={() => setIsSidebarOpen((isOpen) => !isOpen)}
-    // />
-    // <Product_items
-    //   addToCart={addToCart}
-    //   cartItems={cartItems}
-    //   decreaseCartQuantity={decreaseCartQuantity}
-    //   wishItems={wishItems}
-    //   toggleWishList={toggleWishList}
-    // />
-    //   {/* <Cart items={cartItems}/> */}
-    //   <WishList items={wishItems}/>
-    // </div>
   );
 }
 

@@ -3,7 +3,7 @@ import items_data from "../data/getItemsData";
 import QuickView from "./QuickView";
 import "./Product_items.css"
 
-export default function Product_items ({
+export default function ProductItems({
     addToCart,
     cartItems,
     decreaseCartQuantity,
