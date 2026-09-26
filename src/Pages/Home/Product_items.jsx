@@ -1,5 +1,5 @@
 import { useState } from "react";
-import items_data from "../data/getItemsData";
+import items_data from "../../data/getItemsData";
 import QuickView from "./QuickView";
 import "./Product_items.css"
 

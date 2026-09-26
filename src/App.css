@@ -2,5 +2,52 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+   /* Colors */
+    --color-prime: #ffffff;
+    --color-sec: #cccaca;
+    --color-name: #808093;
+    --color-pink: #ed3bc9;
+    --color-purple: #7b19f7;
+    --color-purple-bright: #a63bfd;
+    --color-red: #f55123;
+    --color-red-dark: #fa1f4b;
+    --color-green: #0eb477;
+    --color-black: #050505;
+    --color-gray: #636262;
+    --color-star: #ff7e22;
+
+    /* Font family */
+    --font-family: Arial, sans-serif;
+
+    /* Font sizes */
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 20px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 32px;
+
+    /* Font weights */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Border radius */
+    
+    --border-radius5: 5px;
+    --border-radius: 10px;
+    --border-radius2: 20px;
+    --border-radius50: 50%;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
 }
 

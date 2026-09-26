@@ -1,8 +1,4 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import '../../App.css';
 
 #header-container {
     position: fixed;
@@ -10,7 +6,7 @@
     display: flex;
     width: 100%;
     height: 100px;
-    background: linear-gradient(90deg, #ED3CCAFF, #7C19F8FF);
+    background: linear-gradient(90deg, var(--color-pink), var(--color-purple));
     color: white;
     display: flex;
     justify-content: center;
@@ -40,7 +36,7 @@
 #logo{
     width: 216px;
     height: 58px;
-    background-image: url("../data/assets/Wildberries_2023_Pink.svg.webp");
+    background-image: url("../../data/assets/Wildberries_2023_Pink.svg.webp");
     background-position: center;
     background-repeat: no-repeat;
     background-size:contain;
@@ -50,9 +46,9 @@
 }
 
 #sideMenu{
-    border: 1px solid white;
+    border: 1px solid var(--color-prime);;
     background: transparent;
-    color: white;
+    color: var(--color-prime);
     padding: 10px;
     border-radius: 10px;
     height: 35px;
@@ -68,22 +64,25 @@
     width: 100%;
     border-radius: 10px;
     padding-left: 10px;
+    border: none;
 }
-#userButtons>div{
+.header-link{
     position: relative;
-    color: white;
+    color: var(--color-prime);
     display: flex;
     flex-direction: column;
     align-items: center;
+    align-content: center;
+    justify-content: center;
 }
 
-#userButtons>div>i{
+#userButtons i{
    font-size: 1.5em;
 
 }
 #wished{
    font-size: 1.5em;
-   color:white;
+   color:var(--color-prime);
        font-size: 1.2rem;
     position: relative;
     top: 0px;
@@ -94,20 +93,20 @@
 .fa-gift{
    font-size: 3rem;
 }
-#userButtons>div>a {
-    color:rgb(204, 202, 202);
+.header-link>span{
+    color:var(--color-sec);
 
 }
-#userButtons>div>a:hover {
-    color:white;
+.header-link>span:hover {
+    color: var(--color-prime);
     
 }
-#counter-cart{
+#counter-cart, #counter-wishes{
     position: absolute;
     right: 8px;
     top: -8px;
     align-self: center;
-    background: red;
+    background: var(--color-red);
     min-width: 18px;
     height: 18px;
     padding: 0 4px;
@@ -115,19 +114,6 @@
     font-size: 11px;
     line-height: 18px;
     text-align: center;
+    z-index: 999;
 }
 
-#counter-wishes{
-    position: absolute;
-    right: 8px;
-    top: -8px;
-    align-self: center;
-    background: red;
-    min-width: 18px;
-    height: 18px;
-    padding: 0 4px;
-    border-radius: 50%;
-    font-size: 11px;
-    line-height: 18px;
-    text-align: center;
-}
